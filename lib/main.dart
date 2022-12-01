@@ -71,13 +71,13 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/Group181.png',
-              width: 240,
-              height: 240,
+              'assets/images/Group180.png',
+              width: 230,
+              height: 230,
               fit: BoxFit.cover,
             ),
             const Padding(
-              padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
               child: Text(
                 'What do you want to do today?',
                 style: TextStyle(
