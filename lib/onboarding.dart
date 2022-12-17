@@ -63,24 +63,50 @@ class _OnboardingPageState extends State<OnboardingPage> {
         ),
         backgroundColor: Colors.black,
       ),
-      body: PageView(
-        controller: _controller,
-        onPageChanged: _onPageChange,
-        children: <Widget>[
-          _content(
-            "assets/images/Group182.png",
-            "Manage your tasks",
-            "You can easily manage all of your daily tasks in DoMe for free",
+      body: Stack(
+        children: [
+          PageView(
+            controller: _controller,
+            onPageChanged: _onPageChange,
+            children: <Widget>[
+              _content(
+                "assets/images/Group182.png",
+                "Manage your tasks",
+                "You can easily manage all of your daily tasks in DoMe for free",
+              ),
+              _content(
+                "assets/images/Group183.png",
+                "Create daily routine",
+                "In Uptodo you can create your personalized routine to stay productive",
+              ),
+              _content(
+                "assets/images/Group181.png",
+                "Organize your tasks",
+                "You can organize your daily tasks by adding your tasks into separate categories",
+              ),
+            ],
           ),
-          _content(
-            "assets/images/Group183.png",
-            "Create daily routine",
-            "In Uptodo you can create your personalized routine to stay productive",
-          ),
-          _content(
-            "assets/images/Group181.png",
-            "Organize your tasks",
-            "You can organize your daily tasks by adding your tasks into separate categories",
+          Positioned(
+            top: 310,
+            left: 120,
+            right: 120,
+            child: Center(
+              child: DotsIndicator(
+                dotsCount: _pageLength,
+                position: _position.toDouble(),
+                decorator: DotsDecorator(
+                  color: const Color(0XFFAFAFAF),
+                  // Inactive color
+                  activeColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4.0)),
+                  size: const Size(20.0, 6.0),
+                  activeSize: const Size(20.0, 6.0),
+                  activeShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4.0)),
+                ),
+              ),
+            ),
           ),
         ],
       ),
@@ -134,25 +160,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
             width: 220,
             fit: BoxFit.contain,
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 32,
-            ),
-            child: DotsIndicator(
-              dotsCount: _pageLength,
-              position: _position.toDouble(),
-              decorator: DotsDecorator(
-                color: const Color(0XFFAFAFAF),
-                // Inactive color
-                activeColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4.0)),
-                size: const Size(20.0, 6.0),
-                activeSize: const Size(20.0, 6.0),
-                activeShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4.0)),
-              ),
-            ),
+          const SizedBox(
+            height: 36,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 36),

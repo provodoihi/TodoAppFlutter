@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
+import 'apiTestScreen.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({super.key});
@@ -14,6 +15,15 @@ class _StartPageState extends State<StartPage> {
       context,
       MaterialPageRoute(
         builder: (context) => const LoginPage(),
+      ),
+    );
+  }
+
+  void _onPressTest() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const TestPage(),
       ),
     );
   }
@@ -98,7 +108,7 @@ class _StartPageState extends State<StartPage> {
                     ),
                   ),
                   OutlinedButton(
-                    onPressed: _onPress,
+                    onPressed: _onPressTest,
                     style: OutlinedButton.styleFrom(
                       backgroundColor: Colors.black,
                       minimumSize: const Size.fromHeight(50),

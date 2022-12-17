@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,6 +13,13 @@ class _LoginPageState extends State<LoginPage> {
   bool _isNull = true;
   final TextEditingController _username = TextEditingController();
   final TextEditingController _password = TextEditingController();
+
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
 
   @override
   void dispose() {
@@ -43,6 +51,22 @@ class _LoginPageState extends State<LoginPage> {
 
   void _onPressBack() {
     Navigator.pop(context);
+  }
+
+  Future<void> _googleLogin() async {
+    try {
+      await _googleSignIn.signIn();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> _googleLogout() async {
+    try {
+      _googleSignIn.disconnect();
+    } catch (error) {
+      print(error);
+    }
   }
 
   @override
@@ -138,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: _googleLogin,
                     style: OutlinedButton.styleFrom(
                       backgroundColor: Colors.black,
                       minimumSize: const Size.fromHeight(50),
@@ -172,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: _googleLogout,
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.black,
                     minimumSize: const Size.fromHeight(50),
