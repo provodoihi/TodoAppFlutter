@@ -41,10 +41,45 @@ class Content extends StatelessWidget {
             } else if (state is ApiLoadSuccess) {
               return ListView.separated(
                 itemBuilder: (BuildContext context, int index) {
+                  if (index == 0) {
+                    return Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(16),
+                          width: double.infinity,
+                          color: Colors.lightBlueAccent,
+                          child: const Text(
+                            "Singapore Forecast",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          width: double.infinity,
+                          color: Colors.greenAccent,
+                          child: Text(
+                            "Day ${state.weather.forecast[index].day}",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        _card(
+                          state.weather.forecast[0].temperature,
+                          state.weather.description,
+                          state.weather.forecast[0].wind,
+                        ),
+                      ],
+                    );
+                  }
                   return _card(
-                    state.weather.temperature,
+                    state.weather.forecast[index].temperature,
                     state.weather.description,
-                    state.weather.wind,
+                    state.weather.forecast[index].wind,
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {
@@ -52,16 +87,16 @@ class Content extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(12),
                       color: Colors.greenAccent,
-                      child: const Text(
-                        "Singapore",
-                        style: TextStyle(
+                      child: Text(
+                        "Day ${int.parse(state.weather.forecast[index].day)+1}",
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   );
                 },
-                itemCount: 5,
+                itemCount: state.weather.forecast.length,
               );
             } else {
               return const Center(
@@ -88,7 +123,7 @@ class Content extends StatelessWidget {
         leading: description == "Partly cloudy"
             ? const Icon(Icons.cloud)
             : const Icon(Icons.sunny),
-        trailing: Text(wind ?? "Wind Speed Here"),
+        trailing: Text("Wind: $wind" ?? "Wind Speed Here"),
       ),
     );
   }
