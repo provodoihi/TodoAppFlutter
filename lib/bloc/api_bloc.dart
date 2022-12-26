@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'WeatherData.dart';
+import 'weatherData.dart';
 
 part 'api_event.dart';
 part 'api_state.dart';

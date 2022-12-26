@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'start.dart';
+import 'gen/assets.gen.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -70,17 +71,17 @@ class _OnboardingPageState extends State<OnboardingPage> {
             onPageChanged: _onPageChange,
             children: <Widget>[
               _content(
-                "assets/images/Group182.png",
+                Assets.images.group182.path,
                 "Manage your tasks",
                 "You can easily manage all of your daily tasks in DoMe for free",
               ),
               _content(
-                "assets/images/Group183.png",
+                Assets.images.group183.path,
                 "Create daily routine",
                 "In Uptodo you can create your personalized routine to stay productive",
               ),
               _content(
-                "assets/images/Group181.png",
+                Assets.images.group181.path,
                 "Organize your tasks",
                 "You can organize your daily tasks by adding your tasks into separate categories",
               ),
